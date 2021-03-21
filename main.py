@@ -5,9 +5,11 @@ from keras.tensorflow.applications import VGG16
 
 import matplotlib.pyplot as plt
 
+from create_DS import 
+
 #conv_base = VGG16(weights='imagenet', include_top=False, input_shape=(150,150,3))
 
-train_dir = 'C:\Users\lucas\github\Deep-Learning-Binary-Classification\Dataset'
+
 test = ImageDataGenerator(rescale=1./255) #Rescale is a value by which we will multiply the data
 #before any other processing. Our original images consist in RGB coefficients
 #in the 0-255, but such values would be too high for our model to process
