@@ -19,3 +19,11 @@ train_datagen = ImageDataGenerator(rescale=1./255, rotation_range=40, width_shif
 
 train_generator = train_datagen.flow_from_directory(train_dir, target_size=(150,150), batch_size=32, class_mode='binary')
 validation_generator = test_datagen.flow_from_directory(validation_dir, target_size(150,150), batch_size=32, class_mode='binary')
+
+step_size_train = train_generator.n//train_generator.batch_size
+step_size_valid = validation_generator.n//validation_generator.batch_size
+
+model = models.Sequential()
+model.add(layers.Conv2D(32,(3,3), activation='relu', input_shape(150,150,3)))
+model.add(layers.MaxPooling2D((2,2))
+model.add(layers.Conv2D(64,(3,3), activation='relu'))
