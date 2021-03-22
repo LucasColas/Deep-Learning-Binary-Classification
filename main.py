@@ -23,8 +23,8 @@ test_datagen = ImageDataGenerator(rescale=1./255) #Rescale is a value by which w
 #instead by scaling with a 1/255
 train_datagen = ImageDataGenerator(rescale=1./255, rotation_range=40, width_shift_range=0.2, height_shift_range=0.2, shear_range=0.2, zoom_range=0.2, horizontal_flip = True)
 
-train_generator = train_datagen.flow_from_directory(train_dir, target_size=(150,150), batch_size=32, class_mode='binary')
-validation_generator = test_datagen.flow_from_directory(validation_dir, target_size=(150,150), batch_size=32, class_mode='binary')
+train_generator = train_datagen.flow_from_directory(train_dir, target_size=(150,150), batch_size=32, class_mode='binary', color_mode='rgba')
+validation_generator = test_datagen.flow_from_directory(validation_dir, target_size=(150,150), batch_size=32, class_mode='binary', color_mode='rgba')
 
 step_size_train = train_generator.n//train_generator.batch_size
 step_size_valid = validation_generator.n//validation_generator.batch_size
