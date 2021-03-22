@@ -5,6 +5,10 @@ from tensorflow.keras.applications import VGG16
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import numpy as np
 
+from PIL import ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
+
+
 import matplotlib.pyplot as plt
 
 from create_DS import train_dir, validation_dir
