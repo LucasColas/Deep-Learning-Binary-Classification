@@ -6,7 +6,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import numpy as np
 
 from PIL import ImageFile
-ImageFile.LOAD_TRUNCATED_IMAGES = True
+ImageFile.LOAD_TRUNCATED_IMAGES = True #Fix an issue with PIL which reads truncated files
 
 
 import matplotlib.pyplot as plt
