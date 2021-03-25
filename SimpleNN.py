@@ -29,7 +29,7 @@ step_size_valid = validation_generator.n//validation_generator.batch_size
 
 model = models.Sequential()
 model.add(layers.Conv2D(32, (3,3), activation='relu', input_shape=(150,150,4)))
-model.add(BatchNormalization())
+model.add(layers.BatchNormalization())
 model.add(layers.MaxPooling2D((2,2)))
 model.add(layers.Conv2D(64,(3,3), activation='relu'))
 model.add(layers.MaxPooling2D((2,2)))
