@@ -10,7 +10,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 import matplotlib.pyplot as plt
 
-from create_DS import train_dir, validation_dir, test_dir_tables
+from create_DS import train_dir, validation_dir
 
 
 
@@ -47,8 +47,6 @@ model.add(layers.Dense(1,activation='sigmoid'))
 
 model.compile(loss='binary_crossentropy', optimizer=optimizers.RMSprop(lr=1e-4), metrics=['acc'])
 history = model.fit(train_generator, steps_per_epoch=step_size_train,epochs=14,validation_data=validation_generator, validation_steps=step_size_valid)
-
-
 
 
 acc = history.history['acc']
