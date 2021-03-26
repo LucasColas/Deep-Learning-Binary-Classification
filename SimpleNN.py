@@ -48,8 +48,8 @@ model.add(layers.Dense(1,activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer=optimizers.RMSprop(lr=1e-4), metrics=['acc'])
 history = model.fit(train_generator, steps_per_epoch=step_size_train,epochs=14,validation_data=validation_generator, validation_steps=step_size_valid)
 
-x =
-model.predict()
+
+
 
 acc = history.history['acc']
 val_acc = history.history['val_acc']
