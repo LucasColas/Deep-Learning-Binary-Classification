@@ -2,6 +2,7 @@ from tensorflow.keras import models
 from tensorflow.keras import layers
 from tensorflow.keras import metrics, optimizers
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing import image
 import numpy as np
 
 from PIL import ImageFile
@@ -9,7 +10,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 import matplotlib.pyplot as plt
 
-from create_DS import train_dir, validation_dir
+from create_DS import train_dir, validation_dir, test_dir_tables
 
 
 
@@ -46,6 +47,9 @@ model.add(layers.Dense(1,activation='sigmoid'))
 
 model.compile(loss='binary_crossentropy', optimizer=optimizers.RMSprop(lr=1e-4), metrics=['acc'])
 history = model.fit(train_generator, steps_per_epoch=step_size_train,epochs=14,validation_data=validation_generator, validation_steps=step_size_valid)
+
+x =
+model.predict()
 
 acc = history.history['acc']
 val_acc = history.history['val_acc']
