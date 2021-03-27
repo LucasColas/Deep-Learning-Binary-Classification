@@ -19,8 +19,9 @@ model.add(conv_base)
 model.add(layers.Flatten())
 model.add(layers.Dense(256, activation='relu'))
 model.add(layers.Dense(1, activation='sigmoid'))
+print(model.summary())
 print("trainable weights", len(model.trainable_weights))
-conv_base.trainable #Layers with weights not updated
+conv_base.trainable = False #Layers with weights not updated
 print("trainable weights : ", len(model.trainable_weights))
 
 
