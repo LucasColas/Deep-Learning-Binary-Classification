@@ -4,9 +4,6 @@ import numpy as np
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 
-
-conv_base = VGG16(weights="imagenet", include_top=False, input_shape=(150,150,3))
-
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
@@ -14,6 +11,8 @@ import matplotlib.pyplot as plt
 
 from create_DS import train_dir, validation_dir
 
+conv_base = VGG16(weights="imagenet", include_top=False, input_shape=(150,150,3))
+conv_base.trainable
 
 model = models.Sequential()
 model.add(conv_base)
@@ -32,5 +31,3 @@ for data_batch, labels_batch in train_generator:
     print("shape of a data batch",data_batch.shape)
 
     break
-
-    
