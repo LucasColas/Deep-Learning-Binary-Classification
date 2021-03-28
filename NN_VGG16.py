@@ -1,5 +1,5 @@
 from tensorflow.keras.applications import VGG16
-from tensorflow.keras import models, layers
+from tensorflow.keras import models, layers, optimizers
 import numpy as np
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
