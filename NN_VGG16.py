@@ -12,8 +12,7 @@ import matplotlib.pyplot as plt
 from create_DS import train_dir, validation_dir
 
 conv_base = VGG16(weights="imagenet", include_top=False, input_shape=(150,150,3))
-step_size_train = train_generator.n//train_generator.batch_size
-step_size_valid = validation_generator.n//validation_generator.batch_size
+
 
 
 model = models.Sequential()
