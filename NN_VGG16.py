@@ -33,6 +33,8 @@ train_datagen = ImageDataGenerator(rescale=1./255, rotation_range=40, width_shif
 train_generator = train_datagen.flow_from_directory(train_dir, target_size=(150,150), batch_size=32, class_mode='binary', color_mode='rgba')
 validation_generator = test_datagen.flow_from_directory(validation_dir, target_size=(150,150), batch_size=32, class_mode='binary', color_mode='rgba') #'rgba' because we have images with transparency
 
+step_size_train = train_generator.n//train_generator.batch_size
+step_size_valid = validation_generator.n//validation_generator.batch_size
 
 for data_batch, labels_batch in train_generator:
     print("shape of a data batch",data_batch.shape)
