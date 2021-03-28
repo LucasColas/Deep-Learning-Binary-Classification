@@ -39,6 +39,7 @@ for data_batch, labels_batch in train_generator:
 
     break
 
+model.compile(loss="binary_crossentropy", optimizer=optimizers.RMSprop(lr=2e-5), metrics=['acc'])
 
 history = model.fit(train_generator, steps_per_epoch=100, epochs=30,validation_data=validation_generator, validation_steps=50)
 model.save("NN VGG16.h5")
