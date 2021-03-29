@@ -2,6 +2,7 @@ from tensorflow.keras.applications import VGG16
 from tensorflow.keras import models, layers, optimizers
 import numpy as np
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import tensorflow.io as tfio
 
 
 from PIL import ImageFile
@@ -11,7 +12,7 @@ import matplotlib.pyplot as plt
 
 from create_DS import train_dir, validation_dir
 
-conv_base = VGG16(weights="imagenet", include_top=False, input_shape=(150,150,4))
+conv_base = VGG16(weights="imagenet", include_top=False, input_shape=(150,150,3))
 
 
 
@@ -39,6 +40,9 @@ for data_batch, labels_batch in train_generator:
     print("shape of a data batch",data_batch.shape)
 
     break
+
+train_generator = tfio.experimental.color.rgba_to_rgb(train_generator)
+validation_generator = tfio.experimental.color.rgba_to_rgb(validation_generator)
 
 model.compile(loss="binary_crossentropy", optimizer=optimizers.RMSprop(lr=2e-5), metrics=['acc'])
 
