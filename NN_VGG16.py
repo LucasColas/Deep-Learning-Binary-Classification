@@ -41,12 +41,17 @@ for data_batch, labels_batch in train_generator:
 
     break
 
-train_generator = tfio.experimental.color.rgba_to_rgb(train_generator)
-validation_generator = tfio.experimental.color.rgba_to_rgb(validation_generator)
+train = tfio.experimental.color.rgba_to_rgb(train_generator)
+validation = tfio.experimental.color.rgba_to_rgb(validation_generator)
+for data_batch, labels_batch in train:
+    print("shape of a data batch",data_batch.shape)
 
+    break
+
+"""
 model.compile(loss="binary_crossentropy", optimizer=optimizers.RMSprop(lr=2e-5), metrics=['acc'])
 
-history = model.fit(train_generator, steps_per_epoch=step_size_train, epochs=15,validation_data=validation_generator, validation_steps=step_size_valid)
+history = model.fit(train, steps_per_epoch=step_size_train, epochs=15,validation_data=validation, validation_steps=step_size_valid)
 model.save("NN VGG16.h5")
 
 acc = history.history['acc']
@@ -69,3 +74,4 @@ plt.title('Training and validation loss')
 plt.legend()
 
 plt.show()
+"""
