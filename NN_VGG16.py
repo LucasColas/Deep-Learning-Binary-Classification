@@ -2,7 +2,8 @@ from tensorflow.keras.applications import VGG16
 from tensorflow.keras import models, layers, optimizers
 import numpy as np
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-import tensorflow.io as tfio
+import tensorflow_io as tfio
+
 
 
 from PIL import ImageFile
