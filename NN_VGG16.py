@@ -1,18 +1,30 @@
 from tensorflow.keras.applications import VGG16
+from tensorflow.keras import utils
 from tensorflow.keras import models, layers, optimizers
 import numpy as np
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import tensorflow_io as tfio
-
-
-
+import cv2
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
+import os 
 
 import matplotlib.pyplot as plt
 
 from create_DS import train_dir, validation_dir
 
+Categories = ["Glasses", "Tables"]
+
+for Categorie in Categories:
+    path = os.path.join(train_dir, Categorie)
+
+    for img in os.listdir(path):
+        img_array = cv2.imread(os.path.join(path,img), cv2.IMREAD_GRAYSCALE)
+        plt.imshow(img_array, cmap="gray")
+        plt.show()
+
+
+"""
 conv_base = VGG16(weights="imagenet", include_top=False, input_shape=(150,150,3))
 
 
@@ -36,23 +48,31 @@ validation_generator = test_datagen.flow_from_directory(validation_dir, target_s
 
 step_size_train = train_generator.n//train_generator.batch_size
 step_size_valid = validation_generator.n//validation_generator.batch_size
+print("step_size_train",step_size_train)
+print("step_size_valid",step_size_valid)
 
 for data_batch, labels_batch in train_generator:
     print("shape of a data batch",data_batch.shape)
 
     break
 
+
+
+
+
 train = tfio.experimental.color.rgba_to_rgb(train_generator)
 validation = tfio.experimental.color.rgba_to_rgb(validation_generator)
 for data_batch, labels_batch in train:
-    print("shape of a data batch",data_batch.shape)
+    print("shape of a data batch after rgb",data_batch.shape)
 
     break
 
 """
+
+"""
 model.compile(loss="binary_crossentropy", optimizer=optimizers.RMSprop(lr=2e-5), metrics=['acc'])
 
-history = model.fit(train, steps_per_epoch=step_size_train, epochs=15,validation_data=validation, validation_steps=step_size_valid)
+history = model.fit(train, steps_per_epoch=32, epochs=15,validation_data=validation, validation_steps=16)
 model.save("NN VGG16.h5")
 
 acc = history.history['acc']
