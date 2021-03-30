@@ -17,19 +17,26 @@ Categories = ["Glass", "Tables"]
 Categories2 = ["Glasses", "Tables"]
 
 
-
+img_glasses = []
+img_tables = []
 
 for Categorie in Categories:
     path = os.path.join(train_dir, Categorie)
 
     path_img = os.listdir(path)
 
+
     for img in path_img:
+
         img_array = cv2.imread(os.path.join(path,img))
-        plt.imshow(img_array)
-        print(img_array.shape)
-        plt.show()
-        break
+        if Categorie == "Glass":
+            img_glasses.append(img_array)
+
+        else:
+            img_tables.append(img_array)
+
+
+
 
 
 """
