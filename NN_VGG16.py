@@ -35,6 +35,11 @@ for Categorie in Categories:
         else:
             img_tables.append(img_array)
 
+glasses_train = np.array(img_glasses)
+print(glasses_train.shape)
+tables_train = np.array(img_tables)
+print(tables_train.shape)
+
 
 
 
