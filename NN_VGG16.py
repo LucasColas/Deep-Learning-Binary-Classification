@@ -7,21 +7,29 @@ import tensorflow_io as tfio
 import cv2
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
-import os 
+import os
 
 import matplotlib.pyplot as plt
 
 from create_DS import train_dir, validation_dir
 
-Categories = ["Glasses", "Tables"]
+Categories = ["Glass", "Tables"]
+Categories2 = ["Glasses", "Tables"]
+
+
+
 
 for Categorie in Categories:
     path = os.path.join(train_dir, Categorie)
 
-    for img in os.listdir(path):
-        img_array = cv2.imread(os.path.join(path,img), cv2.IMREAD_GRAYSCALE)
-        plt.imshow(img_array, cmap="gray")
+    path_img = os.listdir(path)
+
+    for img in path_img:
+        img_array = cv2.imread(os.path.join(path,img))
+        plt.imshow(img_array)
+        print(img_array.shape)
         plt.show()
+        break
 
 
 """
