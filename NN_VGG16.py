@@ -31,6 +31,7 @@ for Categorie in Categories:
     for img in path_img:
 
         img_array = cv2.imread(os.path.join(path,img))
+        new_img_array = cv2.resize(img_array,(100,100))
         data.append([img_array, label])
 
 
