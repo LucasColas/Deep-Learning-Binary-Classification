@@ -39,10 +39,6 @@ for Categorie in Categories:
         data.append([new_img_array, label])
 
 
-
-
-
-
 x = []
 y = []
 for feature, label in data:
