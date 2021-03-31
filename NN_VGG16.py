@@ -1,11 +1,11 @@
-"""
 from tensorflow.keras.applications import VGG16
 from tensorflow.keras import utils
+from tensorflow.keras.applications import VGG16
 from tensorflow.keras import models, layers, optimizers
 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import tensorflow_io as tfio
-"""
+
 import numpy as np
 import cv2
 from PIL import ImageFile
@@ -50,6 +50,9 @@ for feature, label in data:
     y.append(label)
 
 X = np.array(x).reshape(-1,150,150,3)
+X //= 255
+
+y = np.array(y)
 
 
 
@@ -73,7 +76,7 @@ print("trainable weights : ", len(model.trainable_weights))
 
 model.compile(loss="binary_crossentropy", optimizer=optimizers.RMSprop(lr=2e-5), metrics=['acc'])
 
-history = model.fit(X,y)
+history = model.fit(X,y, batch_size=32, epochs=5)
 model.save("NN VGG16.h5")
 
 acc = history.history['acc']
