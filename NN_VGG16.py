@@ -28,11 +28,17 @@ for Categorie in Categories:
     path_img = os.listdir(path)
     label = Categories.index(Categorie)
 
+    count = 0
+
     for img in path_img:
 
         img_array = cv2.imread(os.path.join(path,img))
-        new_img_array = cv2.resize(img_array,(100,100))
-        data.append([img_array, label])
+        new_img_array = cv2.resize(img_array,(150,150))
+        #plt.clf()
+        #plt.imshow(new_img_array)
+        #plt.show()
+        data.append([new_img_array, label])
+
 
 
 
@@ -43,11 +49,12 @@ for feature, label in data:
     x.append(feature)
     y.append(label)
 
+X = np.array(x).reshape(-1,150,150,3)
 
 
 
 
-"""
+
 conv_base = VGG16(weights="imagenet", include_top=False, input_shape=(150,150,3))
 
 
@@ -63,39 +70,10 @@ conv_base.trainable = False #Layers with weights of the ConvNet not updated
 print("trainable weights : ", len(model.trainable_weights))
 
 
-test_datagen = ImageDataGenerator(rescale=1./255)
-train_datagen = ImageDataGenerator(rescale=1./255, rotation_range=40, width_shift_range=0.2, height_shift_range=0.2, shear_range=0.2, zoom_range=0.2, horizontal_flip = True, fill_mode='nearest')
 
-train_generator = train_datagen.flow_from_directory(train_dir, target_size=(150,150), batch_size=32, class_mode='binary', color_mode='rgba')
-validation_generator = test_datagen.flow_from_directory(validation_dir, target_size=(150,150), batch_size=32, class_mode='binary', color_mode='rgba') #'rgba' because we have images with transparency
-
-step_size_train = train_generator.n//train_generator.batch_size
-step_size_valid = validation_generator.n//validation_generator.batch_size
-print("step_size_train",step_size_train)
-print("step_size_valid",step_size_valid)
-
-for data_batch, labels_batch in train_generator:
-    print("shape of a data batch",data_batch.shape)
-
-    break
-
-
-
-
-
-train = tfio.experimental.color.rgba_to_rgb(train_generator)
-validation = tfio.experimental.color.rgba_to_rgb(validation_generator)
-for data_batch, labels_batch in train:
-    print("shape of a data batch after rgb",data_batch.shape)
-
-    break
-
-"""
-
-"""
 model.compile(loss="binary_crossentropy", optimizer=optimizers.RMSprop(lr=2e-5), metrics=['acc'])
 
-history = model.fit(train, steps_per_epoch=32, epochs=15,validation_data=validation, validation_steps=16)
+history = model.fit(X,y)
 model.save("NN VGG16.h5")
 
 acc = history.history['acc']
@@ -118,4 +96,3 @@ plt.title('Training and validation loss')
 plt.legend()
 
 plt.show()
-"""
