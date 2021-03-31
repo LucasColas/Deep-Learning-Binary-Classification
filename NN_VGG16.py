@@ -28,7 +28,6 @@ for Categorie in Categories:
     path_img = os.listdir(path)
     label = Categories.index(Categorie)
 
-    count = 0
 
     for img in path_img:
 
@@ -38,8 +37,8 @@ for Categorie in Categories:
         #plt.imshow(new_img_array)
         #plt.show()
         data.append([new_img_array, label])
-        if count > 63 :
-            count += 1
+
+
 
 
 
@@ -78,25 +77,25 @@ print("trainable weights : ", len(model.trainable_weights))
 
 model.compile(loss="binary_crossentropy", optimizer=optimizers.RMSprop(lr=2e-5), metrics=['acc'])
 
-history = model.fit(X,y, batch_size=32, epochs=5)
+history = model.fit(X,y, batch_size=32, epochs=15)
 model.save("NN VGG16.h5")
 
 acc = history.history['acc']
-val_acc = history.history['val_acc']
+#val_acc = history.history['val_acc']
 loss = history.history['loss']
-val_loss = history.history['val_loss']
+#val_loss = history.history['val_loss']
 
 epochs = range(1,len(acc)+1)
 
 plt.plot(epochs,acc,'bo', label='Training acc')
-plt.plot(epochs, val_acc,'b', label='Validation acc')
+#plt.plot(epochs, val_acc,'b', label='Validation acc')
 plt.title('Training and validation accuracy')
 plt.legend()
 
 plt.figure()
 
 plt.plot(epochs, loss, 'bo', label='Training loss')
-plt.plot(epochs, val_loss, 'b', label='Validation loss')
+#plt.plot(epochs, val_loss, 'b', label='Validation loss')
 plt.title('Training and validation loss')
 plt.legend()
 
