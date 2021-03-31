@@ -45,8 +45,6 @@ for feature, label in data:
 
 
 
-#X = np.array(x).reshape(-1,)
-
 
 
 """
