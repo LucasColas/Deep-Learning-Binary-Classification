@@ -1,9 +1,12 @@
+"""
 from tensorflow.keras.applications import VGG16
 from tensorflow.keras import utils
 from tensorflow.keras import models, layers, optimizers
-import numpy as np
+
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import tensorflow_io as tfio
+"""
+import numpy as np
 import cv2
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
@@ -17,31 +20,31 @@ Categories = ["Glass", "Tables"]
 Categories2 = ["Glasses", "Tables"]
 
 
-img_glasses = []
-img_tables = []
+data = []
 
 for Categorie in Categories:
     path = os.path.join(train_dir, Categorie)
 
     path_img = os.listdir(path)
-
+    label = Categories.index(Categorie)
 
     for img in path_img:
 
         img_array = cv2.imread(os.path.join(path,img))
-        label = Categories.index(Categorie)
-        if Categorie == "Glass":
-            img_glasses.append([img_array, label])
-
-        else:
-            img_tables.append([img_array, label])
-
-glasses_train = np.array(img_glasses)
-print(glasses_train.shape)
-tables_train = np.array(img_tables)
-print(tables_train.shape)
+        data.append([img_array, label])
 
 
+
+x = []
+y = []
+for feature, label in data:
+    print(feature.shape)
+    x.append(feature)
+    y.append(label)
+
+
+
+#X = np.array(x).reshape(-1,)
 
 
 
