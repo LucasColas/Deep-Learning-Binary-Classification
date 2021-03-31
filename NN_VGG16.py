@@ -38,6 +38,8 @@ for Categorie in Categories:
         #plt.imshow(new_img_array)
         #plt.show()
         data.append([new_img_array, label])
+        if count > 63 :
+            count += 1
 
 
 
