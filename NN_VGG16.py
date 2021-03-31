@@ -29,11 +29,12 @@ for Categorie in Categories:
     for img in path_img:
 
         img_array = cv2.imread(os.path.join(path,img))
+        label = Categories.index(Categorie)
         if Categorie == "Glass":
-            img_glasses.append(img_array)
+            img_glasses.append([img_array, label])
 
         else:
-            img_tables.append(img_array)
+            img_tables.append([img_array, label])
 
 glasses_train = np.array(img_glasses)
 print(glasses_train.shape)
