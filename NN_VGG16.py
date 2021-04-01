@@ -23,21 +23,24 @@ Categories2 = ["Glasses", "Tables"]
 data = []
 validation_data = []
 
-for Categorie in Categories:
-    path = os.path.join(train_dir, Categorie)
+def get_data(Categories,Dataset):
+    for Categorie in Categories:
+        path = os.path.join(train_dir, Categorie)
 
-    path_img = os.listdir(path)
-    label = Categories.index(Categorie)
+        path_img = os.listdir(path)
+        label = Categories.index(Categorie)
 
 
-    for img in path_img:
+        for img in path_img:
 
-        img_array = cv2.imread(os.path.join(path,img))
-        new_img_array = cv2.resize(img_array,(150,150))
-        #plt.clf()
-        #plt.imshow(new_img_array)
-        #plt.show()
-        data.append([new_img_array, label])
+            img_array = cv2.imread(os.path.join(path,img))
+            new_img_array = cv2.resize(img_array,(150,150))
+            #plt.clf()
+            #plt.imshow(new_img_array)
+            #plt.show()
+            Dataset.append([new_img_array, label])
+
+
 
 for Categorie in Categories2:
     path = os.path.join(validation_dir, Categorie)
@@ -62,6 +65,8 @@ for feature, label in data:
     print(feature.shape)
     x.append(feature)
     y.append(label)
+
+
 
 X = np.array(x).reshape(-1,150,150,3)
 X //= 255
