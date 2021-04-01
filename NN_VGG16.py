@@ -19,11 +19,8 @@ from create_DS import train_dir, validation_dir
 Categories = ["Glass", "Tables"]
 Categories2 = ["Glasses", "Tables"]
 
-
-data = []
-validation_data = []
-
-def get_data(Categories,Dataset):
+def get_data(Categories):
+    Dataset = []
     for Categorie in Categories:
         path = os.path.join(train_dir, Categorie)
 
@@ -40,39 +37,33 @@ def get_data(Categories,Dataset):
             #plt.show()
             Dataset.append([new_img_array, label])
 
+    return Dataset
 
 
-for Categorie in Categories2:
-    path = os.path.join(validation_dir, Categorie)
-
-    path_img = os.listdir(path)
-    label = Categories2.index(Categorie)
-
-    for img in path_img:
-        img_array = cv2.imread(os.path.join(path,img))
-        new_img_array = cv2.resize(img_array,(150,150))
-        #plt.clf()
-        #plt.imshow(new_img_array)
-        #plt.show()
-        validation_data.append([new_img_array, label])
+data = get_data(Categories)
+validation_data = get_data(Categories2)
 
 
+def get_x_y(data):
+    x,y = [],[]
+    for feature, label in data:
+        x.append(feature)
+        y.append(label)
 
+    return x,y
 
-x = []
-y = []
-for feature, label in data:
-    print(feature.shape)
-    x.append(feature)
-    y.append(label)
+x_train,y_train = get_x_y(data)
+x_validation,y_validation = get_x_y(validation_data)
 
 
 
-X = np.array(x).reshape(-1,150,150,3)
-X //= 255
+X = np.array(x_train).reshape(-1,150,150,3)
+X /= 255
+y = np.array(y_train)
 
-y = np.array(y)
-
+X_val = np.array(x_validation).reshape(-1,150,150,3)
+X_val /=255
+y_val = np.array(y_validation)
 
 
 
@@ -95,7 +86,7 @@ print("trainable weights : ", len(model.trainable_weights))
 
 model.compile(loss="binary_crossentropy", optimizer=optimizers.RMSprop(lr=2e-5), metrics=['acc'])
 
-history = model.fit(X,y, batch_size=32, epochs=15)
+history = model.fit(X,y, batch_size=32, epochs=15, validation_data=(X_val, y_val))
 model.save("NN VGG16.h5")
 
 acc = history.history['acc']
