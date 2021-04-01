@@ -19,10 +19,10 @@ from create_DS import train_dir, validation_dir
 Categories = ["Glass", "Tables"]
 Categories2 = ["Glasses", "Tables"]
 
-def get_data(Categories):
+def get_data(Categories, dir):
     Dataset = []
     for Categorie in Categories:
-        path = os.path.join(train_dir, Categorie)
+        path = os.path.join(dir, Categorie)
 
         path_img = os.listdir(path)
         label = Categories.index(Categorie)
@@ -40,8 +40,8 @@ def get_data(Categories):
     return Dataset
 
 
-data = get_data(Categories)
-validation_data = get_data(Categories2)
+data = get_data(Categories,train_dir)
+validation_data = get_data(Categories2,validation_dir)
 
 
 def get_x_y(data):
