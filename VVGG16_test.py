@@ -1,4 +1,4 @@
-#from tensorflow.keras import models
+from tensorflow.keras import models
 import cv2
 import os
 import matplotlib.pyplot as plt
@@ -20,7 +20,8 @@ for img in path_img:
     plt.show()
     break
 
-
+X = np.array(new_img_array).reshape(-1, 150,150,3)
+X /= 255
 
 
 """
@@ -41,7 +42,7 @@ for img in path_img:
 
 
 
-#model = models.load_model("NN VGG16.h5")
-#model.summary()
+model = models.load_model("NN VGG16.h5")
+model.summary()
 
-model.predict()
+model.predict(new_img_array)
