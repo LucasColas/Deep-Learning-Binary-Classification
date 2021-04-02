@@ -4,15 +4,16 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
-from create_DS import test_dir_glasses,train_dir, validation_dir
+from create_DS import test_dir_glasses,train_dir, validation_dir, test_dir
 
 image = []
 
 
-path = os.path.join(test_dir, "Glasses")
+path = os.path.join(test_dir, "Tables")
 print(path)
 path_img = os.listdir(path)
 print(path_img)
+
 for img in path_img:
     img_array = cv2.imread(os.path.join(path,img))
     new_img_array = cv2.resize(img_array,(150,150))
