@@ -9,20 +9,23 @@ from create_DS import test_dir_glasses,train_dir, validation_dir, test_dir
 image = []
 
 
-path = os.path.join(test_dir, "Tables")
+path = os.path.join(test_dir, "Glasses")
 print(path)
 path_img = os.listdir(path)
 print(path_img)
-
+images = []
+count = 0
 for img in path_img:
     img_array = cv2.imread(os.path.join(path,img))
     new_img_array = cv2.resize(img_array,(150,150))
-    print(new_img_array)
+    images.append(new_img_array)
     #plt.imshow(new_img_array)
     #plt.show()
-    break
+    if count > 12:
+        break
+    count += 1
 
-X = np.array(new_img_array, dtype='float').reshape(-1, 150,150,3)
+X = np.array(images, dtype='float').reshape(-1, 150,150,3)
 X /= 255
 
 
