@@ -3,11 +3,11 @@ import cv2
 import os
 import matplotlib.pyplot as plt
 
-from create_DS import test_dir_glasses
+from create_DS import test_dir_glasses,train_dir
 path_img = os.listdir(test_dir_glasses)
 image = []
 
-for img in test_dir_glasses:
+for img in path_img:
     try:
         img_path = os.path.join(test_dir_glasses, img)
         print(img_path)
@@ -27,9 +27,5 @@ plt.show()
 
 #model = models.load_model("NN VGG16.h5")
 #model.summary()
-
-
-
-
 
 model.predict()
