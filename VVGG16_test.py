@@ -7,6 +7,16 @@ from create_DS import test_dir_glasses,train_dir
 path_img = os.listdir(test_dir_glasses)
 image = []
 
+
+path = os.path.join(train_dir, "Glass")
+path_img = os.listdir(path)
+for img in path_img:
+    
+
+
+
+
+"""
 for img in path_img:
     try:
         img_path = os.path.join(test_dir_glasses, img)
@@ -20,7 +30,7 @@ for img in path_img:
     if len(image) >= 1:
         break
 
-
+"""
 
 plt.imshow(new_img)
 plt.show()
