@@ -3,15 +3,22 @@ import cv2
 import os
 import matplotlib.pyplot as plt
 
-from create_DS import test_dir_glasses,train_dir
-path_img = os.listdir(test_dir_glasses)
+from create_DS import test_dir_glasses,train_dir, validation_dir
+
 image = []
 
 
-path = os.path.join(train_dir, "Glass")
+path = os.path.join(validation_dir, "Glasses")
+print(path)
 path_img = os.listdir(path)
+print(path_img)
 for img in path_img:
-    
+    img_array = cv2.imread(os.path.join(path,img))
+    new_img_array = cv2.resize(img_array,(150,150))
+    print(new_img_array)
+    plt.imshow(new_img_array)
+    plt.show()
+    break
 
 
 
@@ -32,8 +39,7 @@ for img in path_img:
 
 """
 
-plt.imshow(new_img)
-plt.show()
+
 
 #model = models.load_model("NN VGG16.h5")
 #model.summary()
