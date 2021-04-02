@@ -2,13 +2,14 @@ from tensorflow.keras import models
 import cv2
 import os
 import matplotlib.pyplot as plt
+import numpy as np
 
 from create_DS import test_dir_glasses,train_dir, validation_dir
 
 image = []
 
 
-path = os.path.join(validation_dir, "Glasses")
+path = os.path.join(test_dir, "Glasses")
 print(path)
 path_img = os.listdir(path)
 print(path_img)
@@ -16,11 +17,11 @@ for img in path_img:
     img_array = cv2.imread(os.path.join(path,img))
     new_img_array = cv2.resize(img_array,(150,150))
     print(new_img_array)
-    plt.imshow(new_img_array)
-    plt.show()
+    #plt.imshow(new_img_array)
+    #plt.show()
     break
 
-X = np.array(new_img_array).reshape(-1, 150,150,3)
+X = np.array(new_img_array, dtype='float').reshape(-1, 150,150,3)
 X /= 255
 
 
@@ -45,4 +46,5 @@ for img in path_img:
 model = models.load_model("NN VGG16.h5")
 model.summary()
 
-model.predict(new_img_array)
+predict = model.predict(X)
+print(predict)
