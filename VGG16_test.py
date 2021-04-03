@@ -26,7 +26,6 @@ for img in path_img:
 path = os.path.join(test_dir, "Tables")
 print(path)
 path_img = os.listdir(path)
-
 count = 0
 for img in path_img:
     img_array = cv2.imread(os.path.join(path,img))
@@ -42,12 +41,14 @@ model = models.load_model("NN VGG16.h5")
 model.summary()
 
 def prediction(images):
-    n_glasses = 0
-    n_tables = 0
+
     for image in images:
         X = np.array(image, dtype='float').reshape(-1, 150,150,3)
         X /= 255
         predict = model.predict(X)
+        plt.clf()
+        plt.imshow(image)
+        plt.show()
         if predict <= 0.5:
             print("glass")
             n_glasses += 1
@@ -55,7 +56,5 @@ def prediction(images):
         else:
             print("table")
             n_tables += 1
-
-    print(n_glasses, n_tables)
 
 prediction(images)
