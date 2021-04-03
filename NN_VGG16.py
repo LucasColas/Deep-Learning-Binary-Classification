@@ -62,7 +62,7 @@ X /= 255
 y = np.array(y_train)
 
 X_val = np.array(x_validation, dtype='float').reshape(-1,150,150,3)
-X_val /=255
+X_val /= 255
 y_val = np.array(y_validation)
 
 
