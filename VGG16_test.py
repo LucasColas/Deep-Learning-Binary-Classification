@@ -50,5 +50,9 @@ for img in path_img:
 model = models.load_model("NN VGG16.h5")
 model.summary()
 
+def prediction(X):
+    pass
+
+print(X.shape)
 predict = model.predict(X)
 print(predict)
