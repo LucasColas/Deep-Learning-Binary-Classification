@@ -1,9 +1,6 @@
 from tensorflow.keras import utils
 from tensorflow.keras.applications import VGG16
 from tensorflow.keras import models, layers, optimizers
-
-
-
 import numpy as np
 import cv2
 from PIL import ImageFile
