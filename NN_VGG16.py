@@ -1,10 +1,8 @@
-from tensorflow.keras.applications import VGG16
 from tensorflow.keras import utils
 from tensorflow.keras.applications import VGG16
 from tensorflow.keras import models, layers, optimizers
 
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-import tensorflow_io as tfio
+
 
 import numpy as np
 import cv2
