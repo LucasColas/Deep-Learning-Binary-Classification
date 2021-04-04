@@ -11,6 +11,8 @@ import matplotlib.pyplot as plt
 
 from create_DS import train_dir, validation_dir
 
+
+
 Categories = ["Glass", "Tables"]
 Categories2 = ["Glasses", "Tables"]
 
