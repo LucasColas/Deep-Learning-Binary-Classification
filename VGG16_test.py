@@ -3,7 +3,6 @@ import cv2
 import os
 import matplotlib.pyplot as plt
 import numpy as np
-
 from create_DS import test_dir_glasses,train_dir, validation_dir, test_dir
 
 
@@ -51,10 +50,10 @@ def prediction(images):
         plt.show()
         if predict <= 0.5:
             print("glass")
-            n_glasses += 1
+
 
         else:
             print("table")
-            n_tables += 1
+        
 
 prediction(images)
