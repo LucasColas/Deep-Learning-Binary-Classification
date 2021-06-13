@@ -12,7 +12,6 @@ import matplotlib.pyplot as plt
 from create_DS import train_dir, validation_dir
 
 
-
 Categories = ["Glass", "Tables"]
 Categories2 = ["Glasses", "Tables"]
 
@@ -63,10 +62,7 @@ X_val /= 255
 y_val = np.array(y_validation)
 
 
-
-
 conv_base = VGG16(weights="imagenet", include_top=False, input_shape=(150,150,3))
-
 
 
 model = models.Sequential()
